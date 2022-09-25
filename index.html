@@ -2,6 +2,7 @@
 <html ⚡ lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blogger News</title>
   <amp-pixel data-block-on-consent-purposes="performance, marketing"></amp-pixel>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +11,7 @@
   <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
   <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
   
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
   <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
@@ -135,7 +136,7 @@
     Mauris sem est, accumsan sed tincidunt ut, sagittis vel arcu.
     Nullam in libero nisi.
   </p>
-
+  
 
   <div class="further-indent">
     <amp-ad width="100vw" height=320
@@ -147,7 +148,24 @@
             data-full-width>
       <div overflow></div>
     </amp-ad>
-
+    <div id="banner-ad" style="width: 300px; height: 250px;">
+    <script>
+      googletag.cmd.push(function() {
+        googletag.display('banner-ad');
+      });
+    </script>
+    </div>
+    <div id="page-content" style="height: 900vh;">
+      <h1 id="status">Anchor ads are not supported on this page.</h1>
+      <div id="static-ad-1" style="width: 100px; height: 100px;"></div>
+    </div>
+    <script>
+        googletag.cmd.push(function() {
+          // Ensure the first call to display comes after static ad slot
+          // divs are defined.
+          googletag.display(staticSlot);
+        });
+      </script>
 
     </body>
     </html>
