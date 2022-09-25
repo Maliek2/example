@@ -2,15 +2,23 @@
 <html ⚡ lang="en">
 <head>
   <meta charset="utf-8">
+  <title>Blogger News</title>
+  <amp-pixel data-block-on-consent-purposes="performance, marketing"></amp-pixel>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SystemJS Blogger News</title>
+  <meta name="amp-consent-blocking" content="amp-ad">
+  <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+  <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+  <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
   <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+  <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
+  <amp-consent id="googlefc" layout="nodisplay" type="googlefc"><script type="application/json">{"clientConfig":{"publisherIdentifier":"pub-6607653375286321"}}</script></amp-consent>
   <style amp-custom>
     body {
-      background-color: #DDDDDD;
+      background-color: #FFFF;
     }
     /** Put all content in unusual margins for testing. */
     .content {
@@ -61,7 +69,8 @@
   </script>
 </head>
 <body>
-  <h1>Maliek News Example</h1>
+  <div class="content">
+  <h1>Maliek News</h1>
   <p>
     This website is a live demo of a variety of SystemJS applications and use cases.
   </p>
@@ -87,8 +96,9 @@
       }
     })()
   </script>
-  <h1>Content!</h1>
-<div class="content">
+
+  <h4>Blogger News</h4>
+  
 
   <div class="header-img">
     <amp-img src="img/hero@1x.jpg"
@@ -106,10 +116,11 @@
     ac posuere velit semper.
   </p>
 
+  <div class="content">
   <amp-ad width="100vw" height=320
           type="adsense"
           data-ad-client="ca-pub-2383777339857329"
-          data-ad-slot="4121425836"
+          data-ad-slot="10004520"
           data-adtest="on"
           data-auto-format="rspv"
           data-full-width>
@@ -136,5 +147,7 @@
             data-full-width>
       <div overflow></div>
     </amp-ad>
+
+
     </body>
     </html>
