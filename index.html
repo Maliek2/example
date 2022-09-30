@@ -278,7 +278,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjYwNzY1MzM3NTI4NjMyMSIsW251bGwsbnVsbCxudWxsLCJ
     function Viewer(containerId, id, url, visible, opt_caps) {
       this.id = id;
       this.url = url;
-      this.alreadyLoaded_ = false;
+      this.alreadyLoaded_ = true;
       this.stackIndex_ = 0;
       this.visibilityState_ = visible ? 'visible' : 'hidden';
       this.csi_ = 1;
@@ -490,68 +490,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjYwNzY1MzM3NTI4NjMyMSIsW251bGwsbnVsbCxudWxsLCJ
     };
 
 
-    Viewer.prototype.processRequest_ = function(name, data, awaitResponse) {
-      log(this.id + ': Viewer.prototype.processRequest_', name);
-      this.receivedMessages.push({name, data});
-      switch(name) {
-        case 'bindReady':
-          return Promise.resolve();
-        case 'documentLoaded':
-          return this.documentReady_();
-        case 'focusin':
-          log('Focusin event', data);
-          return Promise.resolve();
-        case 'requestFullOverlay':
-          return this.requestFullOverlay_();
-        case 'cancelFullOverlay':
-          return this.cancelFullOverlay_();
-        case 'pushHistory':
-          return this.pushHistory_(data.stackIndex);
-        case 'popHistory':
-          return this.popHistory_(data.stackIndex);
-        case 'broadcast':
-          return this.broadcast_(data);
-        case 'unloaded':
-          log('unloaded');
-          return this.handleUnload_();
-        case 'tick':
-          log('[CSI] tick. label:', data.label);
-          return Promise.resolve();
-        case 'a2aNavigate':
-          log('a2a navigation', data);
-          return Promise.resolve();
-        case 'sendCsi':
-          log('[CSI] sendCsi.');
-          return Promise.resolve();
-        case 'touchstart':
-        case 'touchmove':
-        case 'touchend':
-          log('touch event!', name);
-          return Promise.resolve();
-        case 'viewerRenderTemplate':
-        const ampComponentType = data.ampComponent.type
-        if (ampComponentType === 'amp-list') {
-          return this.ssrRenderAmpListTemplate_(data);
-        } else if (ampComponentType == 'amp-form') {
-          return this.ssrRenderAmpFormTemplate_(data);
-        } else if (ampComponentType == 'amp-autocomplete') {
-          return this.ssrRenderAmpAutocompleteTemplate_(data);
-        } else {
-          return Promise.reject({error: 'source amp component is not valid'})
-        }
-        case 'documentHeight':
-        case 'setFlushParams':
-        case 'prerenderComplete':
-        case 'scroll':
-        case 'replaceHistory':
-        case 'visibilitychange':
-          return Promise.resolve();
-        case 'xhr':
-          return this.handleXhrIntercept_();
-        default:
-          return Promise.reject('request not supported: ', name);
-      }
-    };
+    
 
     Viewer.prototype.handleXhrIntercept_ = function(data) {
     // Mocked response.
@@ -587,29 +526,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjYwNzY1MzM3NTI4NjMyMSIsW251bGwsbnVsbCxudWxsLCJ
       });
     };
 
-    // TODO(alabiaga): We mock the template but don't verify the data
-    // that should be used to construct it. The data should be used
-    // and verified to an extent.
-    Viewer.prototype.ssrRenderAmpListTemplate_ = function(data) {
-      // Mocked response.
-      return Promise.resolve({
-        "html":
-          "<div role='list' class='i-amphtml-fill-content i-amphtml-replaced-content'>"
-            + "<div [text]='data.fruit' role='listitem''></div>"
-            + "<div class='product' role='listitem'>Apple</div>"
-            + "<div class='product' role='listitem'>Orange</div>"
-            + "<div class='product' role='listitem'>Pear</div>"
-            + "<div class='product' role='listitem'>Banana</div>"
-            + "<div class='product' role='listitem'>Watermelon</div>"
-          + "</div>",
-        "body" : "",
-        "init" : {
-          "headers": {
-            "Content-Type": "application/json",
-          }
-        }
-      });
-    };
+  
 
     // TODO(alabiaga): We mock the template but don't verify the data
     // that should be used to construct it. The data should be used
@@ -636,27 +553,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjYwNzY1MzM3NTI4NjMyMSIsW251bGwsbnVsbCxudWxsLCJ
     };
 
 
-    function log() {
-      var var_args = Array.prototype.slice.call(arguments, 0);
-      var_args.unshift('[VIEWER]');
-      console/*OK*/.log.apply(console, var_args);
-    }
-
-    function parseUrlDeprecated(urlString) {
-      var a = document.createElement('a');
-      a.href = urlString;
-      return {
-        href: a.href,
-        protocol: a.protocol,
-        host: a.host,
-        hostname: a.hostname,
-        port: a.port == '0' ? '' : a.port,
-        pathname: a.pathname,
-        search: a.search,
-        hash: a.hash,
-        origin: a.protocol + '//' + a.host
-      };
-    }
+    
 
 
     function paramsStr(params) {
@@ -729,106 +626,7 @@ window.__h82AlnkH6D91__("WyJwdWItNjYwNzY1MzM3NTI4NjMyMSIsW251bGwsbnVsbCxudWxsLCJ
       return url;
     }
 
-    function loadAmpDoc() {
-      const hash = window.location.hash;
-      const hashParams = parseQueryString(hash);
-      const href = hashParams['href'];
-      const caps = hashParams['caps'];
-
-      new Viewer(
-          'container1',
-          '1',
-          './everything.amp.html?amp_js_v=0.1',
-          !href).start();
-      addShowContainer('1');
-
-      new Viewer(
-          'container2',
-          '2',
-          './article.amp.html?amp_js_v=0.1',
-          false).start();
-      addShowContainer('2');
-
-      new Viewer(
-          'container3',
-          '3',
-          './article-access.amp.html?amp_js_v=0.1',
-          false).start();
-      addShowContainer('3');
-
-      new Viewer(
-          'container4',
-          '4',
-          './alp.amp.html',
-          false).start();
-      addShowContainer('4');
-
-      new Viewer(
-          'container5',
-          '5',
-          './article-fixed-header.amp.html?amp_js_v=0.1',
-          false).start();
-      addShowContainer('5');
-
-      new Viewer(
-          'container6',
-          '6',
-          './amp-list.ssr.html?amp_js_v=0.1',
-          false).start();
-      addShowContainer('6');
-
-      new Viewer(
-          'container7',
-          '7',
-          './amp-form.ssr.html?amp_js_v=0.1',
-          false).start();
-      addShowContainer('7');
-
-      new Viewer(
-          'container8',
-          '8',
-          './xhr-intercept.html?amp_js_v=0.1',
-          false,
-          'xhrInterceptor').start();
-      addShowContainer('8');
-
-      new Viewer(
-          'container9',
-          '9',
-          './amp-autocomplete.ssr.html?amp_js_v=0.1',
-          false).start();
-      addShowContainer('9');
-
-      showContainer('1');
-    }
-
-    function addShowContainer(id) {
-      var anchor = document.getElementById('show-container' + id + '-anchor');
-      anchor.onclick = function() {
-        showContainer(id);
-      };
-    }
-
-    function showContainer(id) {
-      log('Show container: ', id);
-      var viewerEl = document.querySelector('viewer');
-      viewerEl.setAttribute('data-show-container', id);
-      allViewers.forEach(function(viewer) {
-        viewer.toggleVisibility(viewer.id == id, viewer.id == id);
-      });
-      currentContainerId = id;
-    }
-
-    function getContainer(id) {
-      return allViewers[id - 1];
-    }
-
-    function viewerScrollCurrentAmpDoc(scrollTop) {
-      if (currentContainerId) {
-        getContainer(currentContainerId).scrollAmpDoc(scrollTop);
-      }
-    }
-
+    
     window.onload = loadAmpDoc;
   </script>
 </head>
