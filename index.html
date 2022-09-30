@@ -12,68 +12,14 @@
   <script src="https://cdn.ampproject.org/v0/examples/amp-viewer-host.js"></script>
   <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
   <script async src="https://fundingchoicesmessages.google.com/i/pub-6607653375286321?ers=1" nonce="Q7FEXlSZPXBzCIPztysSDA"></script><script nonce="Q7FEXlSZPXBzCIPztysSDA">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
-  
-  <script>
-      window.googletag = window.googletag || {cmd: []};
-
-      // GPT ad slots
-      var anchorSlot;
-      var staticSlot;
-
-      googletag.cmd.push(function() {
-        // Define an anchor ad slot at the top of the viewport.
-        // Note: a single anchor ad slot may be defined per page, at either the
-        // top or bottom of the viewport.
-        //
-        // Be aware that anchor ads are not limited to mobile devices. If you
-        // serve the same code to both mobile and non-mobile users, it is
-        // recommended to explicitly define when and where anchor ads should be
-        // shown for each environment. Here we use a basic check of viewport
-        // width to create a top anchor on mobile and a bottom anchor on
-        // non-mobile devices.
-        if (document.body.clientWidth <= 500) {
-          anchorSlot = googletag.defineOutOfPageSlot(
-            '/6355419/Travel', googletag.enums.OutOfPageFormat.TOP_ANCHOR);
-        } else {
-          anchorSlot = googletag.defineOutOfPageSlot(
-            '/6355419/Travel', googletag.enums.OutOfPageFormat.BOTTOM_ANCHOR);
-        }
-
-        // Anchor slots return null if the page or device does not support
-        // anchors.
-        if (anchorSlot) {
-          anchorSlot
-              .setTargeting('test', 'anchor')
-              .addService(googletag.pubads());
-
-          document.getElementById('status').innerText =
-            'Anchor ad is initialized. Scroll page to activate.';
-        }
-
-        // Define static ad slots.
-        staticSlot = googletag.defineSlot(
-              '/152456/NativeHouse', [320, 50], 'Native House')
-            .addService(googletag.pubads());
-
-        // Enable SRA and services.
-        googletag.pubads().enableSingleRequest();
-        googletag.enableServices();
-      });
-    </script>
-     
-
-  <script>
-
-  </script>
-</head>
-<body>
+  </head>
+  <body>
   <viewer>
     <header>
     <h1>Maliek News</h1>
     <a id="visibilityToggle">Visible</a>
     </header>
-    <amp-ad ... data-lazy-fetch="true"></amp-ad>
-  
+   
     <div id="page-content" style="height: 900vh;">
       <h2 id="status">Best News Buzz !</h2>
       <div id="static-ad-1" style="width: 100px; height: 100px;"></div>
