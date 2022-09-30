@@ -4,6 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blogger News</title>
+  <script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
+    <style amp-custom>
+    /* Add your styles here */
+    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <link rel="canonical" href=".">
+    
+    <link rel="manifest" href="/manifest.json">
   <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
   <amp-pixel data-block-on-consent-purposes="performance, marketing"></amp-pixel>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,58 +28,52 @@
   <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
   <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
   <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
-  <amp-consent id="googlefc" layout="nodisplay" type="googlefc"><script type="application/json">{"clientConfig":{"publisherIdentifier":"pub-6607653375286321"}}</script></amp-consent>
-  <style amp-custom>
-    body {
-      background-color: #FFFF;
+  <script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+    */
+    var disqus_config = function () {
+        this.page.url = window.location;
+        this.page.identifier = window.location.hash;
+    };
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//maliek28.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+  </script>
+   <script>
+    window.addEventListener('message', receiveMessage, false);
+    function receiveMessage(event) {
+        if (event.data) {
+            var msg;
+            try {
+                msg = JSON.parse(event.data);
+            } catch (err) {
+                // Do nothing
+            }
+            if (!msg) {
+                return false;
+            }
+            if (msg.name === 'resize' || msg.name === 'rendered') {
+                window.parent.postMessage({
+                sentinel: 'amp',
+                type: 'embed-size',
+                height: msg.data.height
+                }, '*');
+            }
+        }
     }
-    /** Put all content in unusual margins for testing. */
-    .content {
-      margin-left: 15px;
-      margin-right: 12px;
-    }
-    .further-indent {
-      margin-left: 30px;
-      margin-right: 30px;
-    }
-    h1 {
-      padding: 12px 0;
-      margin: 0;
-    }
-    p {
-      margin: 0;
-      padding: 6px 2px;
-    }
-    h1, .everything {
-      background-color: #999999;
-    }
-    amp-ad div[placeholder] {
-      background-color: lightgray;
-    }
-    amp-ad div[fallback] {
-      background-color: black;
-    }
-    amp-ad div[placeholder]::after {
-      content: "loading ...";
-    }
-    amp-ad div[fallback]::after {
-      content: "No ad";
-      color: white;
-    }
-    amp-user-notification {
-      background-color: lightgray;
-      padding: 5px;
-    }
-    .header-img {
-      margin: 0 auto;
-      text-align: center;
-    }
-  </style>
+</script>
   <script>
     if (window.location.origin.includes('github.io')) {
       document.write('<base href="/systemjs-examples/">');
     }
-  </script>
+ </script>
 <body>
   <div id="react-container"></div>
   <script>
@@ -114,54 +117,18 @@
   
 
    <div class="further-indent">
-    
+    <amp-install-serviceworker src="/sw.js"
+                               data-iframe-src="install-sw.html"
+                               layout="nodisplay">
+    </amp-install-serviceworker>
     
  
 
     
       
        <div id="disqus_thread"></div>
-<script>
-    window.addEventListener('message', receiveMessage, false);
-    function receiveMessage(event) {
-        if (event.data) {
-            var msg;
-            try {
-                msg = JSON.parse(event.data);
-            } catch (err) {
-                // Do nothing
-            }
-            if (!msg) {
-                return false;
-            }
-            if (msg.name === 'resize' || msg.name === 'rendered') {
-                window.parent.postMessage({
-                sentinel: 'amp',
-                type: 'embed-size',
-                height: msg.data.height
-                }, '*');
-            }
-        }
-    }
-</script>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-    */
-    var disqus_config = function () {
-        this.page.url = window.location;
-        this.page.identifier = window.location.hash;
-    };
-    (function() {  // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
 
-        s.src = '//maliek101.disqus.com/embed.js';
 
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
  <amp-iframe
     width=600 height=140
     src="https://example.com/amp#hash"
@@ -179,6 +146,7 @@
         Load more
     </div>
 </amp-iframe>
+
 
     </body>
     </html>
