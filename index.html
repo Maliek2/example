@@ -75,36 +75,12 @@
   <p>
     This website is a live demo of a variety of SystemJS applications and use cases.
   </p>
-  <script>
-    (async () => {
-      const directories = await(await fetch('https://api.github.com/repos/systemjs/systemjs-examples/contents')).json()
-
-      directories.filter(dir => dir.type === 'dir').forEach(async function(dir) {
-        const exampleDirs = await(await fetch(`https://api.github.com/repos/systemjs/systemjs-examples/contents/${dir.name}`)).json()
-        addExamples(dir.name, exampleDirs)
-      })
-
-      function addExamples(prefixDir, examples) {
-        const containerEl = document.createElement('section')
-        const header = Object.assign(document.createElement('h2'), {textContent: prefixDir})
-        containerEl.appendChild(header)
-        examples.filter(example => example.type === 'dir').forEach(example => {
-          const li = document.createElement('li')
-          li.appendChild(Object.assign(document.createElement('a'), {href: `${prefixDir}/${example.name}/`, textContent: example.name}))
-          containerEl.appendChild(li)
-        })
-        document.body.appendChild(containerEl)
-      }
-    })()
-  </script>
+  
 
   <h4>Blogger News</h4>
   
 
-  <div class="header-img">
-    <amp-img src="img/hero@1x.jpg"
-             width="289" height="216"></amp-img>
-  </div>
+  
 
   <p>
     Canem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -129,23 +105,14 @@
   </p>
   
 
-  <div class="further-indent">
+   <div class="further-indent">
     
     
-  
+ 
 
-    <div id="banner-ad" style="width: 300px; height: 250px;">
-    <script>
-      googletag.cmd.push(function() {
-        googletag.display('banner-ad');
-      });
-    </script>
-    </div>
-
-    <div id="page-content" style="height: 900vh;">
+    
       <h1 id="status">Anchor Blog</h1>
-      <div id="static-ad-1" style="width: 100px; height: 100px;"></div>
-    </div>
+      
     <script>
         googletag.cmd.push(function() {
           // Ensure the first call to display comes after static ad slot
