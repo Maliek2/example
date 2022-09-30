@@ -10,8 +10,10 @@
   <script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
   <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
   <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-  
-  
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/system.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/amd.js"></script>
+  <!-- The named-exports extra is important to avoid having to rxjs.default.of() (and similar for all other rxjs functions) -->
+  <script src="https://cdn.jsdelivr.net/npm/systemjs/dist/extras/named-exports.js"></script>
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
   <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
@@ -68,8 +70,13 @@
       document.write('<base href="/systemjs-examples/">');
     }
   </script>
-</head>
 <body>
+  <div id="react-container"></div>
+  <script>
+    System.import('titan')
+  </script>
+</head>
+
   <div class="content">
   <h1>Maliek News</h1>
   <p>
